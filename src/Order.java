@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private List<Product> products;
-    private List<Product> productList;
+    private final List<Product> products;
+    private final List<Product> productList;
     private static int orderCount = 1;
 
     public Order() {
