@@ -5,11 +5,13 @@ class Main {
     public static void printMainMenu() {
         System.out.println("===============================");
         System.out.println("\"SHAKESHACK BURGER 에 오신걸 환영합니다.\"");
-        System.out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요.");
+        System.out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요. \n");
+        System.out.println("[ SHAKESHACK MENU ]");
         System.out.println("1. Burgers");
         System.out.println("2. Frozen Custard");
         System.out.println("3. Drinks");
         System.out.println("4. Beer");
+        System.out.println("\n[ ORDER MENU ]");
         System.out.println("5. 주문 및 결제");
         System.out.println("6. 주문 취소");
         System.out.println("===============================");
@@ -100,10 +102,10 @@ class Main {
             printMainMenu();
             int choice = scanner.nextInt();
 
-            if (choice >= 1 && choice <= 4) {
-                printSubMenu(choice == 1 ? "Burgers" :
-                        choice == 2 ? "Frozen Custard" :
-                                choice == 3 ? "Drinks" : "Beer");
+            if ((choice >= 1) && (choice <= 4)) {
+                printSubMenu((choice == 1) ? "Burgers" :
+                        ((choice == 2) ? "Frozen Custard" :
+                                ((choice == 3) ? "Drinks" : "Beer")));
 
                 int subChoice = scanner.nextInt();
                 String[] menuItems = null;
@@ -155,7 +157,7 @@ class Main {
 
                     int confirmChoice = scanner.nextInt();
                     if (confirmChoice == 1) {
-                        order.addProduct(new Product(menu.split("\\|")[0].trim(), Double.parseDouble(menu.split("\\|")[1].trim().substring(2)), menu.split("\\|")[2].trim()));
+                        order.addProduct(new Product(menu.split("\\|")[0].trim(), Double.parseDouble(menu.split("\\|")[1].trim().replaceAll("[^0-9.]", "")), menu.split("\\|")[2].trim()));
 
 
                         System.out.println("메뉴가 장바구니에 추가되었습니다.\n");
@@ -166,6 +168,11 @@ class Main {
                     System.out.println("잘못된 선택입니다.\n");
                 }
             } else if (choice == 5) {
+                if (order.getProducts().isEmpty()) {
+                    System.out.println("\n주문 내역이 비어있습니다.\n");
+                    System.out.println("메인 메뉴로 돌아갑니다.\n");
+                    continue;
+                }
                 System.out.println("[ Orders ]");
                 order.printOrder();
 
@@ -186,6 +193,7 @@ class Main {
                         e.printStackTrace();
                     }
                     clearConsole();
+                    order.clearOrder();
                 } else if (orderChoice == 2) {
                     clearConsole();
                 } else {

@@ -18,6 +18,7 @@ public class Order {
 
     public void clearOrder() {
         products.clear();
+        productList.clear();
     }
 
     public List<Product> getProducts() {
@@ -34,7 +35,7 @@ public class Order {
 
     public void printOrder() {
         for (int i = 0; i < productList.size(); i++) {
-            System.out.println((i + 1) + ". " + productList.get(i).getName() + " | " + productList.get(i).getDescription());
+            System.out.println((i + 1) + ". " + productList.get(i).getName() + " | W " + productList.get(i).getPrice() + " | " + productList.get(i).getDescription());
         }
     }
 
