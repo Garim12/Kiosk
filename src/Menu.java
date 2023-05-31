@@ -94,7 +94,8 @@ class Menu {
             if ((choice >= 1) && (choice <= 4)) {
                 printSubMenu((choice == 1) ? "Burgers" :
                         ((choice == 2) ? "Frozen Custard" :
-                                ((choice == 3) ? "Drinks" : "Beer")));
+                                ((choice == 3) ? "Drinks" :
+                                                 "Beer")));
 
                 int subChoice = scanner.nextInt();
                 String[] menuItems = null;
@@ -154,8 +155,7 @@ class Menu {
                 }
             } else if (choice == 5) {
                 if (order.getProducts().isEmpty()) {
-                    System.out.println("\n주문 내역이 비어있습니다.\n");
-                    System.out.println("메인 메뉴로 돌아갑니다.\n");
+                    System.out.println("\n주문 내역이 비어있습니다. 메인 메뉴로 이동합니다.\n");
                     continue;
                 }
                 System.out.println("[ Orders ]");
