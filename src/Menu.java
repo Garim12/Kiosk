@@ -28,7 +28,7 @@ class Menu {
                     "Hamburger     | W 5.4 | 비프패티를 기반으로 야채가 들어간 기본버거"
             };
 
-            TUC(category, burgerMenu);
+            MenuTitle(category, burgerMenu);
         } else if (category.equalsIgnoreCase("Frozen Custard")) {
             String[] frozenCustardMenu = {
                     "Shakea | W 5.9 | 바닐라, 초콜렛, 솔티드 카라멜, 블랙 & 화이트, 스트로베리, 피넛버터, 커피",
@@ -38,7 +38,7 @@ class Menu {
                     "Cups & Cones | W 5.9 | Double"
             };
 
-            TUC(category, frozenCustardMenu);
+            MenuTitle(category, frozenCustardMenu);
         } else if (category.equalsIgnoreCase("Drinks")) {
             String[] drinksMenu = {
                     "Shack-made Lemonade | R 3.9 | 매장에서 직접 만드는 상큼한 레몬에이드",
@@ -48,21 +48,21 @@ class Menu {
                     "Abita Root Beer | R 5.9 | 청량감 있는 독특한 미국식 무알콜 탄산음료"
             };
 
-            TUC(category, drinksMenu);
+            MenuTitle(category, drinksMenu);
         } else if (category.equalsIgnoreCase("Beer")) {
             String[] beerMenu = {
                     "ShackMeister Ale | R 9.8 | 뉴욕 브루클린 맥주",
                     "MBCO | R 6.8 | Pale Ale, Draft 맥주"
             };
 
-            TUC(category, beerMenu);
+            MenuTitle(category, beerMenu);
         } else {
             System.out.println("\n잘못된 카테고리입니다.\n");
         }
     }
 
-    private static void TUC(String category, String[] burgerMenu) {
-        System.out.println("\n" + category.toUpperCase());
+    private static void MenuTitle(String category, String[] burgerMenu) {
+        System.out.println("\n" + "[ " +category + " MENU ]");
         for (int i = 0; i < burgerMenu.length; i++) {
             System.out.println((i + 1) + ". " + burgerMenu[i]);
         }
