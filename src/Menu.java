@@ -3,7 +3,7 @@ import java.io.IOException;
 class Menu {
 
     public static void printMainMenu() {
-        System.out.println("===============================");
+        System.out.println("\n===============================");
         System.out.println("\"SHAKESHACK BURGER 에 오신걸 환영합니다.\"");
         System.out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요. \n");
         System.out.println("[ SHAKESHACK MENU ]");
@@ -69,19 +69,6 @@ class Menu {
         System.out.println("-------------------------------");
         System.out.print("선택: ");
     }
-
-    private static void clearConsole() {
-        try {
-            if (System.getProperty("os.name").contains("Windows"))
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            else
-                new ProcessBuilder("clear").inheritIO().start().waitFor();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -177,10 +164,9 @@ class Menu {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    clearConsole();
                     order.clearOrder();
                 } else if (orderChoice == 2) {
-                    clearConsole();
+                    printMainMenu();
                 } else {
                     System.out.println("\n잘못된 선택입니다.\n");
                 }
@@ -192,7 +178,6 @@ class Menu {
                 if (cancelChoice == 1) {
                     order.clearOrder();
                     System.out.println("\n진행하던 주문이 취소되었습니다.\n");
-                    clearConsole();
                 } else {
                     System.out.println("\n취소되지 않았습니다.\n");
                 }
