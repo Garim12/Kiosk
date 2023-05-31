@@ -1,4 +1,4 @@
-public class Product {
+public class Product extends Menu{
     private final String name;
     private final double price;
     private final String description;

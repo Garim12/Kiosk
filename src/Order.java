@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Order {
+public class Order extends Menu{
     private final List<Product> products;
     private final List<Product> productList;
     private static int orderCount = 1;
