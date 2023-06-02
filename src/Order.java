@@ -1,24 +1,22 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.System.*;
+
 public class Order extends Menu{
     private final List<Product> products;
-    private final List<Product> productList;
     private static int orderCount = 1;
 
     public Order() {
         this.products = new ArrayList<>();
-        this.productList = new ArrayList<>();
     }
 
     public void addProduct(Product product) {
         products.add(product);
-        productList.add(product);
     }
 
     public void clearOrder() {
         products.clear();
-        productList.clear();
     }
 
     public List<Product> getProducts() {
@@ -34,13 +32,13 @@ public class Order extends Menu{
     }
 
     public void printOrder() {
-        for (int i = 0; i < productList.size(); i++) {
-            System.out.println((i + 1) + ". " + productList.get(i).getName() + " | W " + productList.get(i).getPrice() + " | " + productList.get(i).getDescription());
+        for (int i = 0; i < products.size(); i++) {
+            out.println((i + 1) + ". " + products.get(i).getName() + " | W " + products.get(i).getPrice() + " | " + products.get(i).getDescription());
         }
     }
 
 
-    public int placeOrder() {
+    public static int placeOrder() {
         int orderNumber = orderCount;
         orderCount++;
         return orderNumber;

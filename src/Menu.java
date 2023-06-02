@@ -1,24 +1,27 @@
 import java.util.Scanner;
-import java.io.IOException;
+
+import static java.lang.System.*;
+
 class Menu {
 
     public static void printMainMenu() {
-        System.out.println("\n===============================");
-        System.out.println("\"SHAKESHACK BURGER 에 오신걸 환영합니다.\"");
-        System.out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요. \n");
-        System.out.println("[ SHAKESHACK MENU ]");
-        System.out.println("1. Burgers          | 앵거스 비프 통살을 다져만든 버거");
-        System.out.println("2. Frozen Custard   | 매장에서 신선하게 만드는 아이스크림");
-        System.out.println("3. Drinks           | 매장에서 직접 만드는 음료");
-        System.out.println("4. Beer             | 뉴욕 브루클린 브루어리에서 양조한 맥주");
-        System.out.println("\n[ ORDER MENU ]");
-        System.out.println("5. Order            | 장바구니를 확인 후 주문합니다.");
-        System.out.println("6. Cancel           | 진행중인 주문을 취소합니다.");
-        System.out.println("===============================");
-        System.out.print("선택: ");
+        out.println("\n===============================");
+        out.println("\"SHAKESHACK BURGER 에 오신걸 환영합니다.\"");
+        out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요. \n");
+        out.println("[ SHAKESHACK MENU ]");
+        out.println("1. Burgers          | 앵거스 비프 통살을 다져만든 버거");
+        out.println("2. Frozen Custard   | 매장에서 신선하게 만드는 아이스크림");
+        out.println("3. Drinks           | 매장에서 직접 만드는 음료");
+        out.println("4. Beer             | 뉴욕 브루클린 브루어리에서 양조한 맥주");
+        out.println("\n[ ORDER MENU ]");
+        out.println("5. Order            | 장바구니를 확인 후 주문합니다.");
+        out.println("6. Cancel           | 진행중인 주문을 취소합니다.");
+        out.println("===============================");
+        out.print("선택: ");
     }
 
     public static void printSubMenu(String category) {
+
         if (category.equalsIgnoreCase("Burgers")) {
             String[] burgerMenu = {
                     "ShackBurger   | W 6.9 | 토마토, 양상추, 쉑소스가 토핑된 치즈버거",
@@ -57,21 +60,21 @@ class Menu {
 
             MenuTitle(category, beerMenu);
         } else {
-            System.out.println("\n잘못된 카테고리입니다.\n");
+            out.println("\n잘못된 카테고리입니다.\n");
         }
     }
 
     private static void MenuTitle(String category, String[] burgerMenu) {
-        System.out.println("\n" + "[ " +category + " MENU ]");
+        out.println("\n" + "[ " +category + " MENU ]");
         for (int i = 0; i < burgerMenu.length; i++) {
-            System.out.println((i + 1) + ". " + burgerMenu[i]);
+            out.println((i + 1) + ". " + burgerMenu[i]);
         }
-        System.out.println("-------------------------------");
-        System.out.print("선택: ");
+        out.println("-------------------------------");
+        out.print("선택: ");
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(in);
         Order order = new Order();
 
         while (true) {
@@ -82,7 +85,7 @@ class Menu {
                 printSubMenu((choice == 1) ? "Burgers" :
                         ((choice == 2) ? "Frozen Custard" :
                                 ((choice == 3) ? "Drinks" :
-                                                 "Beer")));
+                                        "Beer")));
 
                 int subChoice = scanner.nextInt();
                 String[] menuItems = null;
@@ -124,40 +127,40 @@ class Menu {
 
                 if (subChoice >= 1 && subChoice <= menuItems.length) {
                     String menu = menuItems[subChoice - 1];
-                    System.out.println("\n" + menu);
-                    System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
-                    System.out.println("1. 확인\t2. 취소");
+                    out.println("\n" + menu);
+                    out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
+                    out.println("1. 확인\t2. 취소");
 
                     int confirmChoice = scanner.nextInt();
                     if (confirmChoice == 1) {
                         order.addProduct(new Product(menu.split("\\|")[0].trim(), Double.parseDouble(menu.split("\\|")[1].trim().replaceAll("[^0-9.]", "")), menu.split("\\|")[2].trim()));
 
 
-                        System.out.println("메뉴가 장바구니에 추가되었습니다.\n");
+                        out.println("메뉴가 장바구니에 추가되었습니다.\n");
                     } else {
-                        System.out.println("메뉴 추가가 취소되었습니다.\n");
+                        out.println("메뉴 추가가 취소되었습니다.\n");
                     }
                 } else {
-                    System.out.println("잘못된 선택입니다.\n");
+                    out.println("잘못된 선택입니다.\n");
                 }
             } else if (choice == 5) {
                 if (order.getProducts().isEmpty()) {
-                    System.out.println("\n주문 내역이 비어있습니다. 메인 메뉴로 이동합니다.\n");
+                    out.println("\n주문 내역이 비어있습니다. 메인 메뉴로 이동합니다.\n");
                     continue;
                 }
-                System.out.println("[ Orders ]");
+                out.println("[ Orders ]");
                 order.printOrder();
 
-                System.out.println("[ Total ]");
-                System.out.println("W " + order.getTotalPrice());
+                out.println("[ Total ]");
+                out.println("W " + order.getTotalPrice());
 
-                System.out.println("1. 주문\t2. 메뉴판");
+                out.println("1. 주문\t2. 메뉴판");
                 int orderChoice = scanner.nextInt();
                 if (orderChoice == 1) {
                     int orderNumber = order.placeOrder();
-                    System.out.println("\n주문이 완료되었습니다!\n");
-                    System.out.println("대기번호는 [ " + orderNumber + " ] 번 입니다.");
-                    System.out.println("(3초 후 메뉴판으로 돌아갑니다.)\n");
+                    out.println("\n주문이 완료되었습니다!\n");
+                    out.println("대기번호는 [ " + orderNumber + " ] 번 입니다.");
+                    out.println("(3초 후 메뉴판으로 돌아갑니다.)\n");
 
                     try {
                         Thread.sleep(3000);
@@ -168,18 +171,18 @@ class Menu {
                 } else if (orderChoice == 2) {
                     printMainMenu();
                 } else {
-                    System.out.println("\n잘못된 선택입니다.\n");
+                    out.println("\n잘못된 선택입니다.\n");
                 }
             } else if (choice == 6) {
-                System.out.println("진행하던 주문을 취소하시겠습니까?");
-                System.out.println("1. 확인\t2. 취소");
+                out.println("진행하던 주문을 취소하시겠습니까?");
+                out.println("1. 확인\t2. 취소");
 
                 int cancelChoice = scanner.nextInt();
                 if (cancelChoice == 1) {
                     order.clearOrder();
-                    System.out.println("\n진행하던 주문이 취소되었습니다.\n");
+                    out.println("\n진행하던 주문이 취소되었습니다.\n");
                 } else {
-                    System.out.println("\n취소되지 않았습니다.\n");
+                    out.println("\n취소되지 않았습니다.\n");
                 }
             }
         }
