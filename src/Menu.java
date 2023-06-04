@@ -63,7 +63,7 @@ class Menu {
     }
 
     private static void MenuTitle(String category, String[] burgerMenu) {
-        out.println("\n" + "[ " +category + " MENU ]");
+        out.println("\n" + "[ " + category + " MENU ]");
         for (int i = 0; i < burgerMenu.length; i++) {
             out.println((i + 1) + ". " + burgerMenu[i]);
         }
