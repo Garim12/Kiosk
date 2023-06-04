@@ -19,7 +19,7 @@ public class Main {
                                         "Beer")));
 
                 int subChoice = scanner.nextInt();
-                String[] menuItems = null;
+                String[] menuItems;
 
                 if (choice == 1) {
 
@@ -48,7 +48,7 @@ public class Main {
                             "Fountain Soda | R 2.7 | 코카콜라, 코카콜라 제로, 스프라이트, 환타 오렌지, 환타 그레이프",
                             "Abita Root Beer | R 5.9 | 청량감 있는 독특한 미국식 무알콜 탄산음료"
                     };
-                } else if (choice == 4) {
+                } else {
 
                     menuItems = new String[]{
                             "ShackMeister Ale | R 9.8 | 뉴욕 브루클린 맥주",
@@ -88,7 +88,7 @@ public class Main {
                 out.println("1. 주문\t2. 메뉴판");
                 int orderChoice = scanner.nextInt();
                 if (orderChoice == 1) {
-                    int orderNumber = order.placeOrder();
+                    int orderNumber = Order.placeOrder();
                     out.println("\n주문이 완료되었습니다!\n");
                     out.println("대기번호는 [ " + orderNumber + " ] 번 입니다.");
                     out.println("(3초 후 메뉴판으로 돌아갑니다.)\n");
